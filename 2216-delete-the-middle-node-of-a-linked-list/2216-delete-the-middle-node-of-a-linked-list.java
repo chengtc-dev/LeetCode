@@ -13,15 +13,20 @@ class Solution {
         int n = 0;
         ListNode current = head;
 
+        // count total nodes
         while (current != null) {
             n++;
             current = current.next;
         }
         if (n == 1) return null;
+
         n = n / 2 - 1;
+        // find the node before middle node
         for (current = head; n != 0; current = current.next, n--);
+        // delete middle node
         if (current.next != null) current.next = current.next.next;
-        else current.next = null;
+        // for middle node in last
+        else current.next = null; 
 
         return head;
     }
