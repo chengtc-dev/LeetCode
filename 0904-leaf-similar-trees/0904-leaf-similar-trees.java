@@ -15,26 +15,20 @@
  */
 class Solution {
     public boolean leafSimilar(TreeNode root1, TreeNode root2) {
-        List<Integer> list1 = new ArrayList<>();
-        List<Integer> list2 = new ArrayList<>();
+        List<Integer> leaves1 = new ArrayList<>();
+        List<Integer> leaves2 = new ArrayList<>();
 
-        list1 = helper(root1, list1);
-        list2 = helper(root2, list2);
-        if (list1.size() != list2.size()) return false;
-        for (int i = 0; i < list1.size(); i++) {
-            if (list1.get(i) != list2.get(i)) return false;
-        }
+        dfs(root1, leaves1);
+        dfs(root2, leaves2);
 
-        return true;
+        return leaves1.equals(leaves2);
     }
 
-    private List<Integer> helper (TreeNode root, List<Integer> list) {
-        if (root == null) return list;
+    private void dfs (TreeNode root, List<Integer> leaves) {
+        if (root == null) return;
         
-        list = helper(root.left, list);
-        if (root.left == null && root.right == null) list.add(root.val);
-        list = helper(root.right, list);
-
-        return list;
+        dfs(root.left, leaves);
+        if (root.left == null && root.right == null) leaves.add(root.val);
+        dfs(root.right, leaves);
     }
 }
