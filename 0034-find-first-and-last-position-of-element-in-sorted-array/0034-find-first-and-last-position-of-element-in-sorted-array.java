@@ -10,9 +10,6 @@ class Solution {
             else r--;
         }
         
-        // // if (range[0] == -1 && range[1] != -1) range[0] = range[1];
-        // if (range[1] == -1 && range[0] != -1) range[1] = range[0];
-
         return range;
     }
 }
